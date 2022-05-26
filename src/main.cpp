@@ -1,9 +1,16 @@
 #include <Arduino.h>
 
-void setup() {
-  // put your setup code here, to run once:
+#define LASER_LED PB7
+
+void setup()
+{
+  pinMode(LASER_LED, OUTPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  digitalWrite(LASER_LED, HIGH);
+  delay(100);
+  digitalWrite(LASER_LED, LOW);
+  delay(900);
 }
