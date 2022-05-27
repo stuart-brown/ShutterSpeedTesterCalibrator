@@ -9,6 +9,7 @@ volatile uint32_t off_pulse_ms = 1000 - on_pulse_ms;
 
 void button_press_isr()
 {
+  digitalWrite(USER_LED, HIGH);
   on_pulse_ms *= 2;
   if (on_pulse_ms > 1024)
   {
@@ -20,9 +21,9 @@ void button_press_isr()
   }
   else
   {
-    off_pulse_ms = 500;
+    off_pulse_ms = 1000;
   }
-  digitalWrite(USER_LED, digitalRead(USER_LED) ^ 1);
+  digitalWrite(USER_LED, LOW);
 }
 
 void setup()
@@ -30,7 +31,7 @@ void setup()
   pinMode(LASER_LED, OUTPUT);
   pinMode(USER_LED, OUTPUT);
   attachInterrupt(digitalPinToInterrupt(USER_BUTTON), button_press_isr, FALLING);
-  digitalWrite(USER_LED, HIGH);
+  digitalWrite(USER_LED, LOW);
 }
 
 void loop()
